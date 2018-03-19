@@ -326,7 +326,6 @@ public class ViewerPanel extends JPanel implements OverlayRenderer, TransformLis
 
 		overlayAnimators = new ArrayList<>();
 		overlayAnimators.add( msgOverlay );
-		overlayAnimators.add( new TextOverlayAnimator( "Press <F1> for help.", 3000, TextPosition.CENTER ) );
 
 		display.addComponentListener( new ComponentAdapter()
 		{
