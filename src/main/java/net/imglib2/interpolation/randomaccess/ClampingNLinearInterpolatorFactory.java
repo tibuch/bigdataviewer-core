@@ -62,7 +62,11 @@ public class ClampingNLinearInterpolatorFactory< T extends NumericType< T > > im
 		}
 		else if ( ARGBType.class.isInstance( type ) )
 		{
-			return ( RealRandomAccess ) new NLinearInterpolatorARGB( ( RandomAccessible ) randomAccessible );
+			// This factory is needed to get an instance of NLinearInterpolatorARGB in an osgi setup.
+			// OSGI doesn't like split packages, since every bundle has its own class loader. Which results in InvalidAccessException for 
+			// NLinearInterpolatorARGB which is protected. 
+			final NLinearInterpolatorARGBFactory fac = new NLinearInterpolatorARGBFactory();
+			return ( RealRandomAccess ) fac.create( ( RandomAccessible ) randomAccessible );
 		}
 		else if ( VolatileARGBType.class.isInstance( type ) )
 		{
